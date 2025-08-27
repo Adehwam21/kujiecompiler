@@ -54,7 +54,6 @@ class TestParser(unittest.TestCase):
         self.assertIsInstance(else_block.statements[0], Print)
         self.assertIsInstance(else_block.statements[0].expr, String)
         self.assertEqual(else_block.statements[0].expr.value, "lesser")
-
-
+        
 if __name__ == "__main__":
     unittest.main()
