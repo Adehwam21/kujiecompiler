@@ -1,2 +1,2 @@
 # kujiecompiler
-A compiler for the kujie programing language
+A compiler for the Kujie programming language
