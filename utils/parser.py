@@ -24,14 +24,14 @@ class Parser:
     def parse_program(self):
         stmts = []
         while self.peek() and self.peek().kind != TokenType.EOF:
-            stmt = self.parse_statement()
-            stmts.append(stmt)
-            
-            # Only require ; if there's another statement coming
-            if self.peek().kind != TokenType.EOF:
-                self.expect(TokenType.ENDLINE)
+            # Skip blank lines / standalone ENDLINEs
+            while self.peek() and self.peek().kind == TokenType.ENDLINE:
+                self.advance()
+            if self.peek() and self.peek().kind != TokenType.EOF:
+                stmt = self.parse_statement()
+                stmts.append(stmt)
         return Program(stmts)
-    
+
     # Statement Parsing
     def parse_statement(self):
         tok = self.peek()
@@ -82,15 +82,21 @@ class Parser:
             else_block = self.parse_block()
 
         return If(cond, do_block, else_block)
-
-    def parse_block(self):
-        stmts = []
-        while self.peek() and self.peek().kind not in (TokenType.ELSE, TokenType.EOF):
-            stmt = self.parse_statement()
-            stmts.append(stmt)
-            self.expect(TokenType.ENDLINE)  # enforce `;` inside blocks
-        return Block(stmts)
     
+    def parse_block(self):
+      stmts = []
+      while self.peek() and self.peek().kind not in (TokenType.ELSE, TokenType.EOF):
+          # Skip blank lines inside blocks
+          while self.peek() and self.peek().kind == TokenType.ENDLINE:
+              self.advance()
+          if self.peek() and self.peek().kind not in (TokenType.ELSE, TokenType.EOF):
+              stmt = self.parse_statement()
+              stmts.append(stmt)
+              # Expect a semicolon (ENDLINE) after each statement
+              if self.peek() and self.peek().kind == TokenType.ENDLINE:
+                  self.advance()
+      return Block(stmts)
+
     # Expression Parsing
     def parse_expression(self):
         return self.parse_equality()
@@ -143,7 +149,7 @@ class Parser:
         elif tok.kind == TokenType.IDENTIFIER:
             return Var(tok.text)
         else:
-            raise SyntaxError(f"Unexpected token {tok.kind}")
+            raise SyntaxError(f"Unexpected token \"{tok.text}\", line {tok.line}, col {tok.col}")
     
     # Print AST
     def print_ast(self, node, indent=0):
@@ -175,8 +181,8 @@ class Parser:
             print(f"{prefix}If")
             print(f"{prefix}  Condition:")
             self.print_ast(node.condition, indent + 4)
-            print(f"{prefix}  Then:")
-            self.print_ast(node.then_block, indent + 4)
+            print(f"{prefix}  Do:")
+            self.print_ast(node.do_block, indent + 4)
             if node.else_block:
                 print(f"{prefix}  Else:")
                 self.print_ast(node.else_block, indent + 4)
