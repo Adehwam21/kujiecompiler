@@ -1,5 +1,0 @@
-~ PRINTS SOME TEXT TO CONSOLE
-
-make text = "This is a bolier plate code in Kujie";
-wrep text;
-
