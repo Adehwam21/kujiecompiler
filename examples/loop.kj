@@ -1,0 +1,5 @@
+make y = 0;
+
+while y <= 5 run
+  wrep y+1;
+  y = y + 1;
