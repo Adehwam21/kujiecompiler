@@ -1,7 +1,7 @@
 make x = 3;
 wrep x;
 
-if x > 0 do
+if x >= 0 do
     wrep "+ve";
 else
     wrep "-ve";
