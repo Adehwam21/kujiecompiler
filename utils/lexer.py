@@ -39,7 +39,7 @@ class Lexer:
         sys.exit(f"[Lexing Error] line {self.line}, col {self.col}: {message}")
 
     def skipWhitespace(self):
-        while self.curChar in [' ', '\t', '\r']:
+        while self.curChar in [' ','    ', '\t', '\r']:
             self.nextChar()
 
     def skipComment(self):
@@ -112,7 +112,7 @@ class Lexer:
                 self.col += len(tokText) - 1
                 token = Token(tokText, TokenType.NUMBER, self.line, self.col)
             else:
-                self.stop(f"Illegal number at line {self.line}, col {self.col}")
+                self.stop(f"Illegal number, line {self.line}, col {self.col}")
 
         # Identifiers / Keywords
         elif self.curChar.isalpha() or self.curChar == '_':
@@ -126,8 +126,8 @@ class Lexer:
             else:
                 self.stop(f"Illegal identifier at line {self.line}, col {self.col}")
 
-        elif self.curChar in ['\n']:
-            token = Token(self.curChar, TokenType.NEWLINE, self.line, self.col)
+        elif self.curChar == '\n':
+            token = Token(TokenType.ENDLINE, ';', self.line, self.col)
         elif self.curChar == ";":
             token = Token(self.curChar, TokenType.ENDLINE, self.line, self.col)
         elif self.curChar == '\0':
@@ -177,7 +177,7 @@ class Token:
 
 class TokenType(enum.Enum):
     EOF = -1
-    NEWLINE = 0
+    ENDLINE = 0
     NUMBER = 1
     IDENTIFIER = 2
     STRING = 3
@@ -196,7 +196,6 @@ class TokenType(enum.Enum):
     ENDWHILE = 111
     DO = 112
     ELSE = 113
-    ENDLINE = 114
 
     # Operators
     EQ = 201
