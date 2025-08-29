@@ -50,7 +50,7 @@ class Parser:
 
         else:
             raise SyntaxError(f"Unexpected token \"{tok.text}\", line {tok.line}, col {tok.col}")
-      
+    
     # Parsing Statement types
     def parse_vardecl(self):
         self.expect(TokenType.MAKE)

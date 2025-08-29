@@ -6,4 +6,5 @@ A compiler for the Kujie programming language
 2. Install llvmlite. Run `pip install -r requirements.txt`
 3. Run `python main.py`. Runs one of the example files in `/examples/`
 
-
+# Run unit tests
+`python -m unittest discover -s tests`

@@ -183,17 +183,17 @@ class TokenType(enum.Enum):
     STRING = 3
 
     # Keywords
-    LABEL = 101
+    # LABEL = 101
     GOTO = 102
     WREP = 103
     TAKE = 104
     MAKE = 105
     IF = 106
-    THEN = 107
-    ENDIF = 108
-    WHILE = 109
-    REPEAT = 110
-    ENDWHILE = 111
+    # THEN = 107
+    # ENDIF = 108
+    SAKEOF = 109
+    RUNAMAGAIN = 110
+    SHUN = 111
     DO = 112
     ELSE = 113
 
