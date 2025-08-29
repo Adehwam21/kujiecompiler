@@ -84,18 +84,18 @@ class Parser:
         return If(cond, do_block, else_block)
     
     def parse_block(self):
-      stmts = []
-      while self.peek() and self.peek().kind not in (TokenType.ELSE, TokenType.EOF):
-          # Skip blank lines inside blocks
-          while self.peek() and self.peek().kind == TokenType.ENDLINE:
-              self.advance()
-          if self.peek() and self.peek().kind not in (TokenType.ELSE, TokenType.EOF):
-              stmt = self.parse_statement()
-              stmts.append(stmt)
-              # Expect a semicolon (ENDLINE) after each statement
-              if self.peek() and self.peek().kind == TokenType.ENDLINE:
-                  self.advance()
-      return Block(stmts)
+        stmts = []
+        while self.peek() and self.peek().kind not in (TokenType.ELSE, TokenType.EOF):
+            # Skip blank lines inside blocks
+            while self.peek() and self.peek().kind == TokenType.ENDLINE:
+                self.advance()
+            if self.peek() and self.peek().kind not in (TokenType.ELSE, TokenType.EOF):
+                stmt = self.parse_statement()
+                stmts.append(stmt)
+                # Expect a semicolon (ENDLINE) after each statement
+                if self.peek() and self.peek().kind == TokenType.ENDLINE:
+                    self.advance()
+        return Block(stmts)
 
     # Expression Parsing
     def parse_expression(self):

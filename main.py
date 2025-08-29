@@ -4,7 +4,7 @@ from utils.lexer import Lexer
 from utils.parser import Parser
 from utils.codegen import Codegen
 
-src_path = Path("examples") / "new.kj"
+src_path = Path("examples") / "main.kj"
 src = read_source_file(src_path)
 
 # Lexing, parsing, codegen

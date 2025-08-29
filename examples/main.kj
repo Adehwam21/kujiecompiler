@@ -1,0 +1,15 @@
+~ Assignment;
+wrep "hello"; 
+make message = "This is a print statement in Kujie";
+wrep message;   
+
+make x = -1;
+wrep x;
+
+~ Expression;
+wrep 3%2;
+make expression = 18 - 3 * 5 + 18 / 6;
+wrep expression;
+
+~ Condition;
+if x > 0 do wrep 1; else wrep 0;
