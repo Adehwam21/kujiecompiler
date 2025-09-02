@@ -1,11 +1,12 @@
 from pathlib import Path
-from utils.helpers import read_source_file
+from utils.preprocessor import Preprocessor
 from utils.lexer import Lexer
 from utils.parser import Parser
 from utils.codegen import Codegen
 
 src_path = Path("examples") / "main.kj"
-src = read_source_file(src_path)
+preprocessor = Preprocessor()
+src = preprocessor.preprocess_code(src_path)
 
 lexer = Lexer(src)
 parser = Parser(lexer.tokenize_as_object())

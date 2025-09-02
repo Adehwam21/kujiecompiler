@@ -97,7 +97,7 @@ class Parser:
                     self.advance()
         return Block(stmts)
 
-    # Expression Parsing
+    # Expression Parsing, this ensures operator precedence
     def parse_expression(self):
         return self.parse_equality()
 
