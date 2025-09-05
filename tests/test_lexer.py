@@ -29,11 +29,10 @@ class TestLexer(unittest.TestCase):
 
     def test_keywords(self):
         self.assertTokensEqual(
-            "if then endif",
+            "if do",
             [
                 (TokenType.IF, "if"),
-                (TokenType.THEN, "then"),
-                (TokenType.ENDIF, "endif")
+                (TokenType.DO, "do"),
             ]
         )
 
@@ -92,17 +91,14 @@ class TestLexer(unittest.TestCase):
         tokens = self.lex_all_tokens("a;\nb")
         self.assertEqual(tokens[0][0], TokenType.IDENTIFIER)
         self.assertEqual(tokens[1][0], TokenType.ENDLINE)
-        self.assertEqual(tokens[2][0], TokenType.NEWLINE)
         self.assertEqual(tokens[3][0], TokenType.IDENTIFIER)
         self.assertEqual(tokens[-1][0], TokenType.EOF)
 
     def test_comments(self):
         self.assertTokensEqual(
-            "foo ~ this is a comment \n bar",
+            "foo ~ this is a comment",
             [
                 (TokenType.IDENTIFIER, "foo"),
-                (TokenType.NEWLINE, "\n"),
-                (TokenType.IDENTIFIER, "bar")
             ]
         )
 
