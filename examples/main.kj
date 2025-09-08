@@ -8,7 +8,7 @@ wrep x;
 
 ~ Expression;
 wrep 3%2;
-make expression = 18 - 3 * 5 + 18 / 6;
+make expression = 3 + 2 * 5;
 wrep expression;
 
 ~ Condition;

@@ -19,7 +19,7 @@ class Lexer:
         """Advance by one character and update line/col tracking."""
         self.curPos += 1
         if self.curPos >= len(self.source):
-            self.curChar = '\0'
+            self.curChar = '\0' # end of file
         else:
             self.curChar = self.source[self.curPos]
 
@@ -93,7 +93,7 @@ class Lexer:
                 self.stop(f"Expected !=, got!: {self.lookahead()}")
 
         # Strings
-        elif self.curChar == '"':
+        elif self.curChar == '"': # 
             self.nextChar()
             startPos = self.curPos
             while self.curChar != '"':
@@ -127,7 +127,7 @@ class Lexer:
                 self.stop(f"Illegal identifier at line {self.line}, col {self.col}")
 
         elif self.curChar == '\n':
-            token = Token(TokenType.ENDLINE, ';', self.line, self.col)
+            token = Token(';',TokenType.ENDLINE, self.line, self.col)
         elif self.curChar == ";":
             token = Token(self.curChar, TokenType.ENDLINE, self.line, self.col)
         elif self.curChar == '\0':
@@ -191,8 +191,8 @@ class TokenType(enum.Enum):
     IF = 106
     # THEN = 107
     # ENDIF = 108
-    SAKEOF = 109
-    RUNAMAGAIN = 110
+    # SAKEOF = 109
+    # RUNAMAGAIN = 110
     SHUN = 111
     DO = 112
     ELSE = 113
@@ -209,4 +209,4 @@ class TokenType(enum.Enum):
     LTEQ = 209
     GT = 210
     GTEQ = 211
-    PERCENT = 212
+    PERCENT = 212 

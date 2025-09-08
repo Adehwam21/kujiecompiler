@@ -1,1 +1,8 @@
-wrep "meek";
+make age = 35
+
+if age < 18 do
+  wrep "You are a minor";
+else if age < 30 do
+    wrep "You're of legal age";
+else 
+  wrep "Go and marry";

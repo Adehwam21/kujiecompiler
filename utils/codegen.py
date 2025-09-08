@@ -1,4 +1,3 @@
-# utils/codegen.py
 import llvmlite.ir as ir
 import llvmlite.binding as llvm
 from utils.lexer import TokenType
@@ -189,9 +188,9 @@ class Codegen:
     def codegen_Print(self, node: Print):
         """
         Print handles:
-         - string literal (AST String) -> prints "%s\n" global
-         - string variable (i8* returned from codegen_Var) -> print with "%s\n"
-         - integer or comparison (i32 or i1) -> print with "%d\n"
+        - string literal (AST String) -> prints "%s\n" global
+        - string variable (i8* returned from codegen_Var) -> print with "%s\n"
+        - integer or comparison (i32 or i1) -> print with "%d\n"
         """
         # If expr is a string literal AST node
         if isinstance(node.expr, String):
