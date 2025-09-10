@@ -1,4 +1,4 @@
-make age = 35
+make age = 20;
 
 if age < 18 do
   wrep "You are a minor";
