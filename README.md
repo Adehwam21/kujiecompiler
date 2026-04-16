@@ -1,5 +1,5 @@
 # kujiecompiler
-A compiler for the Kujie programming language
+A compiler for the Kujie toy programming language
 
 # How to run
 1. Create a virtual environment `.venv/Scipts/Activate.ps1`
